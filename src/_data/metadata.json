@@ -2,12 +2,12 @@
   "title": "Deej Potter Designs",
   "url": "https://deejpotterdesigns.com/",
   "language": "en",
-  "description": "I am writing about my experiences as a naval navel-gazer.",
+  "description": "Professional web design at a reasonable price.",
   "feed": {
-    "subtitle": "I am writing about my experiences as a naval navel-gazer.",
+    "subtitle": "Professional web design at a reasonable price.",
     "filename": "feed.xml",
     "path": "/feed/feed.xml",
-    "id": "https://example.com/"
+    "id": "https://deejpotterdesigns.com/"
   },
   "jsonfeed": {
     "path": "/feed/feed.json",
