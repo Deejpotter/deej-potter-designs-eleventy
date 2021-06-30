@@ -56,9 +56,10 @@ module.exports = function(eleventyConfig) {
     return [...tagSet];
   });
 
-  // Copy the `img` and `css` folders to the output
+  // Copy folders to the output
   eleventyConfig.addPassthroughCopy("src/images");
   eleventyConfig.addPassthroughCopy("src/css");
+  eleventyConfig.addPassthroughCopy("src/admin/config.yml");
 
   // Customize Markdown library and settings:
   let markdownLibrary = markdownIt({
