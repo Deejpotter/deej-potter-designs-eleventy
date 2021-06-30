@@ -18,3 +18,4 @@ collections:
       - { label: "Description", name: "description", widget: "string" }
       - { label: "Date", name: "date", widget: "date", default: "" }
       - { label: "Post Body", name: "body", widget: "markdown" }
+    summary: "{{title}} {{featuredImage}}"
