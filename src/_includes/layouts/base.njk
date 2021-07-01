@@ -1,56 +1,105 @@
-
 {# _______________________________ #}
 <!doctype html>
 <html lang="en">
 
-<head>
-	<meta charset="utf-8">
+  <head>
+    <meta charset="utf-8">
 
-	<!-- Meta data -->
-	<title>{{ title or metadata.title }}</title>
-	<meta name="description" content="{{ description or metadata.description }}">
-	<link rel="canonical" href="{{ metadata.url | url }}">
-	<meta name="robots" content="index, follow">
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Meta data -->
+    <title>{{ title or metadata.title }}</title>
+    <meta name="description" content="{{ description or metadata.description }}">
+    <link rel="canonical" href="{{ metadata.url | url }}">
+    <meta name="robots" content="index, follow">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-	<!-- OG -->
-	<meta property="og:title" content="{{ title or metadata.title }}">
-	<meta property="og:description" content="{{ description or metadata.description }}">
-	<meta property="og:url" content="{{ metadata.url | url }}">
-	<meta property="og:type" content="website">
-	<meta property="og:image" content="{{ metadata.image }}">
-  
-  <link rel="alternate" href="{{ metadata.feed.path | url }}" type="application/atom+xml" title="{{ metadata.title }}">
-  <link rel="alternate" href="{{ metadata.jsonfeed.path | url }}" type="application/json" title="{{ metadata.title }}">
+    <!-- OG -->
+    <meta property="og:title" content="{{ title or metadata.title }}">
+    <meta property="og:description" content="{{ description or metadata.description }}">
+    <meta property="og:url" content="{{ metadata.url | url }}">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="{{ metadata.image }}">
 
-	<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:ital,wght@0,200;0,300;0,400;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link rel="alternate" href="{{ metadata.feed.path | url }}" type="application/atom+xml" title="{{ metadata.title }}">
+    <link rel="alternate" href="{{ metadata.jsonfeed.path | url }}" type="application/json" title="{{ metadata.title }}">
 
-	<!-- Bootstrap CSS -->
-	<link rel="stylesheet" href="{{ '/css/bootstrap.css' | url }}">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:ital,wght@0,200;0,300;0,400;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 
-	<!-- MAIN CSS -->
-	<link rel="stylesheet" href="{{ '/css/style.css' | url }}">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{{ '/css/bootstrap.css' | url }}">
+
+    <!-- MAIN CSS -->
+    <link rel="stylesheet" href="{{ '/css/style.css' | url }}">
   </head>
 
   <body>
     <header>
-      <h1 class="home"><a href="{{ '/' | url }}">{{ metadata.title }}</a></h1>
 
-      {#- Read more about `eleventy-navigation` at https://www.11ty.dev/docs/plugins/navigation/ #}
-      <ul class="nav">
-      {%- for entry in collections.all | eleventyNavigation %}
-        <li class="nav-item{% if entry.url == page.url %} nav-item-active{% endif %}"><a href="{{ entry.url | url }}">{{ entry.title }}</a></li>
-      {%- endfor %}
-      </ul>
+      <!-- Main header for every page -->
+      <nav class="navbar navbar-expand-md">
+        <div class="container">
+          <!-- Brand -->
+          <a class="navbar-brand" href="{{ '/' | url }}">
+            <img src="{{ '/images/logo.png' | url }}">
+          </a>
+
+          <!-- Toggler/collapsibe Button -->
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+            <i class="fas fa-bars"></i>
+          </button>
+
+          <!-- Navbar links -->
+          <div class="collapse navbar-collapse" id="collapsibleNavbar">
+            <ul class="navbar-nav nav-fill ml-auto">
+              {%- for entry in collections.all | eleventyNavigation %}
+                <li class="nav-item{% if entry.url == page.url %} nav-item-active{% endif %}">
+                  <a class="nav-link" href="{{ entry.url | url }}">{{ entry.title }}</a>
+                </li>
+              {%- endfor %}
+              <li class="nav-item">
+                <a class="btn btn-primary shadow" href="{{ '/contact.php' | url }}">Contact me</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
     </header>
 
     <main{% if templateClass %} class="{{ templateClass }}"{% endif %}>
-
       {{ content | safe }}
     </main>
 
-    <footer></footer>
+    <!-- Main footer for every page -->
+    <footer id="main-footer" class="py-3">
+      <div class="container">
+        <div class="row">
+          <div class="col-md text-center">
+            <h3>Feedback</h3>
+            <p>Got some feedback for me?</p>
+            <a class="btn btn-primary shadow" href="{{ 'contact.php' | url }}">Let me know</a>
+          </div>
+          <div class="col-md text-center">
+            <h3>Connect with me</h3>
+            <a href="https://www.facebook.com/deejpotterdesigns/">
+              <i class="fab fa-facebook"></i>
+            </a>
+          </div>
+          <div class="col-md text-center">
+            <h3>Policies</h3>
+            <a href="{{ 'about/privacy-policy.php' | url }}">Privacy policy</a>
+            <br>
+            <a href="{{ 'about/terms.php' | url }}">Terms and conditions</a>
+          </div>
+        </div>
+      </div>
+    </footer>
 
-    <!-- Current page: {{ page.url | url }} -->
+    <!-- Fontawesome -->
+    <script src="https://kit.fontawesome.com/bf89e65113.js" crossorigin="anonymous"></script>
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
   </body>
+
 </html>
