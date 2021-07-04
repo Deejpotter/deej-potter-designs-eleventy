@@ -18,3 +18,16 @@ collections:
       - { label: "Description", name: "description", widget: "string" }
       - { label: "Date", name: "date", widget: "date", default: "" }
       - { label: "Post Body", name: "body", widget: "markdown" }
+        
+  - name: "work"
+    label: "Work"
+    folder: "src/work"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Featured Image", name: "featuredImage", widget: "image" }
+      - { label: "Layout", name: "layout", widget: "hidden", default: "layouts/post.njk" }
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Description", name: "description", widget: "string" }
+      - { label: "Date", name: "date", widget: "date", default: "" }
+      - { label: "Post Body", name: "body", widget: "markdown" }
